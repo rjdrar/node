@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title> Test Form </title>
+</head>
+<body>
+<header>
+    <h1>IG Database</h1>
+</header>
+
+
+<form action="/add_handle" method="POST">
+    <fieldset>
+        <h3>Add new handle</h3>
+        <label>Handle</label>
+        <input type="text" id='handle' name="handle" placeholder="xxx" required>
+        <br><br>
+
+        <label>Description</label>
+        <textarea id="description" name="description" placeholder="..." required></textarea>
+        <br><br>
+
+        <button type="reset">Reset</button>
+        <button type="submit">Submit</button>
+    </fieldset>
+</form>
+
+
+<form action="/track" method="POST">
+    <fieldset>
+        <h3>Add data</h3>
+        <label>Handle</label>
+        <input type="text" id="handle" name="handle" placeholder="..." required>
+        <br><br>
+        <label>Posts</label>
+        <input type="text" id="posts" name="posts" placeholder="...">
+        <br><br>
+        <label>Followers</label>
+        <input type="text" id="followers" name="followers" placeholder="...">
+        <br><br>
+        <label>Following</label>
+        <input type="text" id="following" name="following" placeholder="...">
+        <br><br>
+        <label>Last Post</label>
+        <input type="text" id="last_post" name="last_post" placeholder="...">
+        <br><br>
+
+        <button type="reset">Reset</button>
+        <button type="submit">Submit</button>
+        <br><br><br>
+    </fieldset>
+</form>
+<br><br>
+<a href="/track-csv">track - download CSV</a>
+<br><br>
+<form action="/update" method="POST">
+    <fieldset>
+        <h3>Update an employee</h3>
+        <label>Employee ID</label>
+        <input type="text" id='empID' name="id" placeholder="1,2,3..." required>
+        <br><br>
+
+        <label>New Name</label>
+        <input type="text" id="name" name="name" placeholder="Maverick" required>
+        <br><br>
+
+        <button type="reset">Reset</button>
+        <button type="submit">Submit</button>
+    </fieldset>
+</form>
+<form action="/delete" method="POST">
+    <fieldset>
+        <h3>Delete an employee</h3>
+        <label>Employee ID</label>
+        <input type="text" id='empID' name="id" placeholder="1,2,3..." required>
+        <br><br>
+
+        <button type="reset">Reset</button>
+        <button type="submit">Submit</button>
+        <br><br><br>
+    </fieldset>
+</form>
+<footer>
+    <hr>
+    <h4>Please enter 'http://localhost:3000/close' to close the database connection before closing this window</h4>
+</footer>
+</body>
+</html>
