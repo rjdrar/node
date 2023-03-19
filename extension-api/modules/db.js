@@ -9,7 +9,7 @@ const sql1=`
     );
 `
 const sql2=`
- CREATE TABLE IF NOT EXISTS track (
+ CREATE TABLE IF NOT EXISTS tracks (
     handle_id INTEGER,
     posts INTEGER,
     followers INTEGER,
@@ -24,14 +24,17 @@ const createDB=()=> {
     db.run(sql2)
 }
 
-const truncateDB=(table='track',cb)=>{
+const truncateDB=(table='tracks',cb)=>{
     console.log('truncate',table)
     try {
-        db.run('DROP TABLE track')
-        if (table === 'handles')
-            db.run('DROP TABLE handles')
-        createDB()
-        cb(null,'ok')
+        db.run('DROP TABLE tracks',err=>{
+            if (table === 'handles')
+                db.run('DROP TABLE handles',err=>{
+                    createDB()
+                    cb(null,'ok')
+                })
+            else cb(null,'ok')
+        })
     } catch(e) {
         cb(e)
     }
@@ -48,7 +51,7 @@ const insertHandle=(handle,description,cb)=>{
 const insertTrack=(handle_id,posts,followers,following,last_post,cb)=>{
 //    console.log('insertTrack',handle_id,posts,followers,following,last_post,cb)
     let sql=`INSERT INTO 
-                track (handle_id,posts,followers,following,last_post,updated) 
+                tracks (handle_id,posts,followers,following,last_post,updated) 
                 VALUES(?,?,?,?,?,DateTime('now'))
             `
     db.run(sql,
@@ -58,8 +61,8 @@ const insertTrack=(handle_id,posts,followers,following,last_post,cb)=>{
 
 const getAllTracks=cb=>{
     db.all(`select handle,posts,followers,following,last_post,updated 
-                from track inner join handles 
-                on handles.id=track.handle_id`,cb)
+                from tracks inner join handles 
+                on handles.id=tracks.handle_id`,cb)
 }
 
 const getAllHandles=cb=>{
