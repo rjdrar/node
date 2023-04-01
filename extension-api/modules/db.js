@@ -71,6 +71,7 @@ const getAllHandles=cb=>{
 }
 
 const getHandle=(handle,cb)=>{
+    console.log('getHandle',handle)
     let sql = `SELECT * FROM handles WHERE handle  = ?`
     db.get(sql, [handle], (err, row) => cb(err, err || row))
 }
